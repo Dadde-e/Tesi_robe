@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il Jazz — Tesina di Terza Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C8A84B;
+  --gold-light: #E2CC82;
+  --gold-dim: rgba(200,168,75,0.12);
+  --bg: #0C0B07;
+  --bg2: #141208;
+  --bg3: #1C1A0E;
+  --white: #F4EFE4;
+  --text: #EAE2CC;
+  --muted: #9A8E6A;
+  --border: rgba(200,168,75,0.15);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ════ PAGINE ════ */
+.page { display: none; min-height: 100vh; flex-direction: column; }
+.page.active { display: flex; }
+
+/* ════════════════════════════
+   HOME
+════════════════════════════ */
+#home {
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+#home::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+#home::after {
+  content: '';
+  position: absolute;
+  top: 35%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(200,168,75,0.055) 0%, transparent 70%);
+  pointer-events: none;
+}
+.home-inner {
+  position: relative; z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+}
+.ornament {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.ornament-line { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+.ornament-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+.ornament-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: 0.7; }
+.ornament-text { font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.cover-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+.cover-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(5rem, 18vw, 12rem);
+  line-height: 0.9;
+  color: var(--white);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.5rem;
+}
+.title-underline { width: 80px; height: 1px; background: var(--gold); margin: 0 auto 2rem; opacity: 0.45; }
+.cover-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-style: italic; font-weight: 300;
+  color: var(--muted); max-width: 400px; line-height: 1.8; margin-bottom: 3rem;
+}
+.cover-info { display: flex; gap: 0.6rem 2rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3.5rem; }
+.info-chip { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.info-chip strong { color: var(--gold-light); font-weight: 500; }
+.btn-enter {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--gold); font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; padding: 1rem 2.2rem; border-radius: 2px;
+  cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden;
+}
+.btn-enter::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold-dim); transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
+}
+.btn-enter:hover::before { transform: scaleX(1); }
+.btn-enter:hover { border-color: rgba(200,168,75,0.45); }
+.btn-enter span, .btn-enter .arr { position: relative; z-index: 1; }
+.btn-enter .arr { transition: transform 0.2s; }
+.btn-enter:hover .arr { transform: translateY(3px); }
+.home-footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 1.2rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+}
+.home-footer span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(154,142,106,0.35); }
+
+/* ════════════════════════════
+   MATERIE — nuovo layout
+════════════════════════════ */
+#materie { background: var(--bg); }
+
+.mat-topbar {
+  border-bottom: 1px solid var(--border);
+  padding: 1.6rem 2.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
+  background: var(--bg2);
+  position: sticky; top: 0; z-index: 10;
+}
+.btn-back {
+  background: transparent; border: 1px solid var(--border);
+  color: var(--muted); font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; padding: 0.55rem 1.2rem; border-radius: 2px;
+  cursor: pointer; transition: border-color 0.2s, color 0.2s; white-space: nowrap;
+}
+.btn-back:hover { border-color: var(--gold); color: var(--gold); }
+.mat-topbar h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; color: var(--white); letter-spacing: 0.04em;
+}
+
+/* lista numerata orizzontale tipo menù editoriale */
+.mat-list {
+  flex: 1;
+  padding: 3rem 2.5rem 4rem;
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.mat-item {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: center;
+  gap: 0 1.5rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: padding-left 0.25s;
+}
+/* prima riga: nessun bordo top */
+.mat-item:first-child { border-top: 1px solid var(--border); }
+
+/* barra laterale hover */
+.mat-item::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transition: transform 0.22s ease;
+  transform-origin: bottom;
+}
+.mat-item:hover::before { transform: scaleY(1); }
+.mat-item:hover { padding-left: 0.8rem; }
+.mat-item:hover .mat-num { color: var(--gold); }
+.mat-item:hover .mat-name { color: var(--white); }
+.mat-item:hover .mat-arr { opacity: 1; transform: translateX(4px); }
+
+.mat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem; font-weight: 300;
+  color: rgba(200,168,75,0.35);
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.mat-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.65rem; font-weight: 400;
+  color: rgba(244,239,228,0.75);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.mat-ico { font-size: 1.1rem; opacity: 0.6; }
+.mat-arr {
+  font-size: 0.85rem; color: var(--gold);
+  opacity: 0; transition: opacity 0.2s, transform 0.2s;
+}
+
+/* ════════════════════════════
+   DETTAGLIO MATERIA
+════════════════════════════ */
+#materia-detail { background: var(--bg); }
+
+.det-topbar {
+  border-bottom: 1px solid var(--border);
+  padding: 1.6rem 2.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
+  background: var(--bg2);
+  position: sticky; top: 0; z-index: 10;
+}
+
+.det-body {
+  flex: 1;
+  padding: 5rem 2.5rem 6rem;
+  max-width: 760px;
+}
+
+.d-eyebrow {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.d-eyebrow::after { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); opacity: 0.4; }
+.d-materia {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 300;
+  color: var(--white); line-height: 1; letter-spacing: 0.04em; margin-bottom: 1rem;
+}
+.d-argomento {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem); font-style: italic; font-weight: 400;
+  color: var(--gold-light); margin-bottom: 2.5rem; line-height: 1.4;
+}
+.d-rule { width: 50px; height: 1px; background: rgba(200,168,75,0.3); margin-bottom: 2.5rem; }
+.d-testo {
+  font-size: 1rem; line-height: 2; color: var(--text);
+  white-space: pre-wrap; font-weight: 300; letter-spacing: 0.01em;
+}
+
+/* ════ FOOTER BAR ════ */
+.footer-bar {
+  border-top: 1px solid var(--border); padding: 1.2rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem; margin-top: auto;
+}
+.footer-bar span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(154,142,106,0.3); }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="home" class="page active">
+  <div class="home-inner">
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-text">Tesina di Terza Media</div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line r"></div>
+    </div>
+    <p class="cover-label">Anno Scolastico 2024 / 2025</p>
+    <h1 class="cover-title">JAZZ</h1>
+    <div class="title-underline"></div>
+    <p class="cover-sub">Storia, ritmo e anima di una musica che ha cambiato il mondo</p>
+    <div class="cover-info">
+      <span class="info-chip">Candidato &nbsp;<strong>[Il tuo nome]</strong></span>
+      <span class="info-chip">Classe &nbsp;<strong>[La tua classe]</strong></span>
+      <span class="info-chip">Materia &nbsp;<strong>Musica</strong></span>
+    </div>
+    <button class="btn-enter" onclick="showPage('materie')">
+      <span>Esplora le materie</span>
+      <span class="arr">↓</span>
+    </button>
+  </div>
+  <div class="home-footer">
+    <span>Il Jazz &nbsp;·&nbsp; Tesina di Terza Media</span>
+    <span>2024 / 2025</span>
+  </div>
+</div>
+
+<!-- ══════════ MATERIE ══════════ -->
+<div id="materie" class="page">
+  <div class="mat-topbar">
+    <button class="btn-back" onclick="showPage('home')">← Copertina</button>
+    <h2>Materie d'Esame</h2>
+  </div>
+
+  <div class="mat-list">
+    <div class="mat-item" onclick="showMateria('italiano')">
+      <span class="mat-num">01</span>
+      <span class="mat-name"><span class="mat-ico">📖</span> Italiano</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('storia')">
+      <span class="mat-num">02</span>
+      <span class="mat-name"><span class="mat-ico">🌍</span> Storia</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('scienze')">
+      <span class="mat-num">03</span>
+      <span class="mat-name"><span class="mat-ico">🔬</span> Scienze</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('inglese')">
+      <span class="mat-num">04</span>
+      <span class="mat-name"><span class="mat-ico">🇬🇧</span> Inglese</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('musica')">
+      <span class="mat-num">05</span>
+      <span class="mat-name"><span class="mat-ico">🎵</span> Musica</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('geografia')">
+      <span class="mat-num">06</span>
+      <span class="mat-name"><span class="mat-ico">🗺️</span> Geografia</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('francese')">
+      <span class="mat-num">07</span>
+      <span class="mat-name"><span class="mat-ico">🇫🇷</span> Francese</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('arte')">
+      <span class="mat-num">08</span>
+      <span class="mat-name"><span class="mat-ico">🎨</span> Arte</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('tecnologia')">
+      <span class="mat-num">09</span>
+      <span class="mat-name"><span class="mat-ico">💻</span> Tecnologia</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('motoria')">
+      <span class="mat-num">10</span>
+      <span class="mat-name"><span class="mat-ico">⚽</span> Scienze Motorie</span>
+      <span class="mat-arr">→</span>
+    </div>
+    <div class="mat-item" onclick="showMateria('religione')">
+      <span class="mat-num">11</span>
+      <span class="mat-name"><span class="mat-ico">✝️</span> Religione</span>
+      <span class="mat-arr">→</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>Il Jazz &nbsp;·&nbsp; Tesina di Terza Media</span>
+    <span>2024 / 2025</span>
+  </div>
+</div>
+
+<!-- ══════════ DETTAGLIO ══════════ -->
+<div id="materia-detail" class="page">
+  <div class="det-topbar">
+    <button class="btn-back" onclick="showPage('materie')">← Tutte le materie</button>
+  </div>
+  <div class="det-body">
+    <p class="d-eyebrow">Materia</p>
+    <h2 class="d-materia" id="detail-name">—</h2>
+    <p class="d-argomento" id="detail-argomento">—</p>
+    <div class="d-rule"></div>
+    <p class="d-testo" id="detail-testo">—</p>
+  </div>
+  <div class="footer-bar">
+    <span>Il Jazz &nbsp;·&nbsp; Tesina di Terza Media</span>
+    <span>2024 / 2025</span>
+  </div>
+</div>
+
+<script>
+const materie = {
+  italiano:   { nome: "Italiano",        argomento: "[Titolo argomento Italiano]",        testo: "[Scrivi qui il testo del tuo argomento di Italiano.]" },
+  storia:     { nome: "Storia",          argomento: "[Titolo argomento Storia]",          testo: "[Scrivi qui il testo del tuo argomento di Storia.]" },
+  scienze:    { nome: "Scienze",         argomento: "[Titolo argomento Scienze]",         testo: "[Scrivi qui il testo del tuo argomento di Scienze.]" },
+  inglese:    { nome: "Inglese",         argomento: "[Titolo argomento Inglese]",         testo: "[Scrivi qui il testo del tuo argomento di Inglese.]" },
+  musica:     { nome: "Musica",          argomento: "Il Jazz — Argomento principale",     testo: "Il Jazz è l'argomento principale di questa tesina.\n\nNato a New Orleans alla fine dell'Ottocento, il jazz nasce dall'incontro tra la musica africana, il blues, il ragtime e la musica europea.\n\nModifica questo testo con i tuoi appunti." },
+  geografia:  { nome: "Geografia",       argomento: "[Titolo argomento Geografia]",       testo: "[Scrivi qui il testo del tuo argomento di Geografia.]" },
+  francese:   { nome: "Francese",        argomento: "[Titolo argomento Francese]",        testo: "[Scrivi qui il testo del tuo argomento di Francese.]" },
+  arte:       { nome: "Arte",            argomento: "[Titolo argomento Arte]",            testo: "[Scrivi qui il testo del tuo argomento di Arte.]" },
+  tecnologia: { nome: "Tecnologia",      argomento: "[Titolo argomento Tecnologia]",      testo: "[Scrivi qui il testo del tuo argomento di Tecnologia.]" },
+  motoria:    { nome: "Scienze Motorie", argomento: "[Titolo argomento Scienze Motorie]", testo: "[Scrivi qui il testo del tuo argomento di Scienze Motorie.]" },
+  religione:  { nome: "Religione",       argomento: "[Titolo argomento Religione]",       testo: "[Scrivi qui il testo del tuo argomento di Religione.]" }
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showMateria(key) {
+  const m = materie[key];
+  document.getElementById('detail-name').textContent = m.nome;
+  document.getElementById('detail-argomento').textContent = m.argomento;
+  document.getElementById('detail-testo').textContent = m.testo;
+  showPage('materia-detail');
+}
+</script>
+</body>
+</html>
