@@ -162,7 +162,7 @@ body {
   font-style: italic; font-weight: 400; color: var(--gold-light); margin-bottom: 2.5rem; line-height: 1.4;
 }
 .d-rule { width: 50px; height: 1px; background: rgba(200,168,75,0.3); margin-bottom: 2.5rem; }
-.d-testo { font-size: 1rem; line-height: 2; color: var(--text); white-space: pre-wrap; font-weight: 300; letter-spacing: 0.01em; }
+.d-testo { font-size: 1.18rem; line-height: 2.1; color: var(--text); white-space: pre-wrap; font-weight: 300; letter-spacing: 0.01em; }
 
 .footer-bar {
   border-top: 1px solid var(--border); padding: 1.2rem 2.5rem;
@@ -266,6 +266,11 @@ body {
       <span class="mat-name"><span class="mat-ico">✝️</span> Religione</span>
       <span class="mat-arr">→</span>
     </div>
+    <div class="mat-item" onclick="showMateria('conclusione')">
+      <span class="mat-num">—</span>
+      <span class="mat-name"><span class="mat-ico">🔚</span> Conclusione</span>
+      <span class="mat-arr">→</span>
+    </div>
   </div>
   <div class="footer-bar">
     <span>Il Jazz &nbsp;·&nbsp; Tesina di Terza Media</span>
@@ -303,7 +308,8 @@ const materie = {
   arte:       { nome: "Arte",            argomento: "Le avanguardie del Novecento", testo: "Nel Novecento l'arte cambia: non rappresenta più la realtà ma le emozioni. Espressionismo, Cubismo, Futurismo, Astrattismo e Dadaismo rivoluzionano l'arte con stili nuovi e innovativi." },
   tecnologia: { nome: "Tecnologia",      argomento: "La radio",                     testo: "La radio trasmette suoni tramite onde elettromagnetiche senza fili. È fondamentale nella guerra per le comunicazioni e poi per diffondere musica e notizie, incluso il jazz." },
   motoria:    { nome: "Scienze Motorie", argomento: "La respirazione",              testo: "La respirazione porta ossigeno al corpo e permette ai muscoli di lavorare. Nello sport e nella musica è fondamentale per controllo, ritmo e resistenza, soprattutto negli strumenti a fiato del jazz." },
-  religione:  { nome: "Religione",       argomento: "Il valore della pace",         testo: "La guerra porta distruzione e viene definita da Papa Benedetto XV una \"inutile strage\". Sottolinea l'importanza della pace e del rispetto tra i popoli." }
+  religione:   { nome: "Religione",       argomento: "Il valore della pace",         testo: "La guerra porta distruzione e viene definita da Papa Benedetto XV una \"inutile strage\". Sottolinea l'importanza della pace e del rispetto tra i popoli." },
+  conclusione: { nome: "Conclusione",     argomento: "Il Jazz come fenomeno culturale", testo: "Il jazz nasce dall'incontro tra culture diverse e si sviluppa grazie ai grandi cambiamenti del Novecento. Questo percorso mostra come storia, arte e scienza siano collegate in un unico grande fenomeno culturale." }
 };
 
 function showPage(id) {
