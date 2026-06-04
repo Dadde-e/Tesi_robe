@@ -9,16 +9,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --gold: #C8A84B;
-  --gold-light: #E2CC82;
-  --gold-dim: rgba(200,168,75,0.12);
-  --bg: #0C0B07;
-  --bg2: #141208;
-  --bg3: #1C1A0E;
-  --white: #F4EFE4;
-  --text: #EAE2CC;
-  --muted: #9A8E6A;
-  --border: rgba(200,168,75,0.15);
+  --gold: #8B6200;
+  --gold-light: #6B4A00;
+  --gold-dim: rgba(139,98,0,0.1);
+  --bg: #F5EEC0;
+  --bg2: #EDE49A;
+  --bg3: #E0D570;
+  --white: #1E1600;
+  --text: #2A1E00;
+  --muted: #7A6020;
+  --border: rgba(139,98,0,0.25);
 }
 
 html { scroll-behavior: smooth; }
@@ -36,14 +36,14 @@ body {
 #home::before {
   content: ''; position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(139,98,0,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,98,0,0.08) 1px, transparent 1px);
   background-size: 80px 80px; pointer-events: none;
 }
 #home::after {
   content: ''; position: absolute; top: 35%; left: 50%;
   transform: translate(-50%, -50%); width: 700px; height: 500px;
-  background: radial-gradient(ellipse, rgba(200,168,75,0.055) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(139,98,0,0.09) 0%, transparent 70%);
   pointer-events: none;
 }
 .home-inner {
@@ -92,7 +92,7 @@ body {
   padding: 1.2rem 2.5rem; display: flex; justify-content: space-between;
   align-items: center; flex-wrap: wrap; gap: 0.5rem;
 }
-.home-footer span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(154,142,106,0.35); }
+.home-footer span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(100,70,0,0.4); }
 
 #materie { background: var(--bg); }
 .mat-topbar {
@@ -130,11 +130,11 @@ body {
 .mat-item:hover .mat-arr { opacity: 1; transform: translateX(4px); }
 .mat-num {
   font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 300;
-  color: rgba(200,168,75,0.35); letter-spacing: 0.1em; transition: color 0.2s; line-height: 1;
+  color: rgba(139,98,0,0.45); letter-spacing: 0.1em; transition: color 0.2s; line-height: 1;
 }
 .mat-name {
   font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 400;
-  color: rgba(244,239,228,0.75); letter-spacing: 0.03em; line-height: 1;
+  color: rgba(30,20,0,0.75); letter-spacing: 0.03em; line-height: 1;
   transition: color 0.2s; display: flex; align-items: center; gap: 0.8rem;
 }
 .mat-ico { font-size: 1.1rem; opacity: 0.6; }
@@ -169,7 +169,7 @@ body {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 0.5rem; margin-top: auto;
 }
-.footer-bar span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(154,142,106,0.3); }
+.footer-bar span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(100,70,0,0.4); }
 </style>
 </head>
 <body>
